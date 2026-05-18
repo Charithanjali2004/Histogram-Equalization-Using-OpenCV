@@ -76,24 +76,77 @@ Display original color image, histogram, enhanced image, and enhanced histogram 
 21222420069 
 
 ---
+```
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+img = cv2.imread('parrot.jpg',cv2.IMREAD_GRAYSCALE)
+plt.imshow(img, cmap='gray')
+plt.title('original_image')
+plt.show()
+
+# Read the image in grayscale format
+plt.hist(img.ravel(),256,range = [0, 256]);
+plt.title('Original Image')
+plt.show()
+
+# Perform histogram equalization
+img_eq = cv2.equalizeHist(img)
+
+# Display [1] the Original Image (Gray Image) and its Histogram, and [2] the Enhanced Image and its Histogram using a 2×2 layout in Matplotlib.
+
+plt.hist(img_eq.ravel(), 256, range = [0, 256]); 
+plt.title('Equalized Histogram')
+
+plt.imshow(img_eq, cmap='gray')
+plt.title('original image')
+plt.show()
+
+# Read the colorgiven parrot.jpg image.
+
+img = cv2.imread('parrot.jpg', cv2.IMREAD_COLOR)
+
+img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+
+# Convert to HSV.
+img_hsv[:,:,2] = cv2.equalizeHist(img_hsv[:, :, 2])
+
+# Perform histogram equalization
+
+img_eq = cv2.cvtColor(img_hsv, cv2.COLOR_HSV2BGR)
+
+# Convert back to BGR format
+
+plt.subplot(121); plt.imshow(img[:, :, ::-1]); plt.title('Original Color Image')
+plt.subplot(122); plt.imshow(img_eq[:, :, ::-1]); plt.title('Equalized Image')
+
+plt.figure(figsize = [12,10])
+plt.subplot(221); plt.imshow(img[:, :, ::-1]); plt.title('Original Color Image')
+plt.subplot(222); plt.imshow(img_eq[:, :, ::-1]); plt.title('Equalized Image')
+plt.subplot(223); plt.hist(img.ravel(),256,range = [0, 256]); plt.title('Original Image')
+plt.subplot(224); plt.hist(img_eq.ravel(),256,range = [0, 256]); plt.title('Histogram Equalized')
+```
 
 ##  Output
+## ORIGINAL IMAGE
 
-### Grayscale Histogram Equalization
+<img width="723" height="449" alt="image" src="https://github.com/user-attachments/assets/a602e646-6879-4ef2-ac47-fd023fefcb0a" />
 
-- Original grayscale image is displayed  
-- Histogram of original grayscale image is plotted  
-- Enhanced image after histogram equalization is displayed  
-- Histogram of enhanced grayscale image shows improved contrast  
+<img width="983" height="506" alt="image" src="https://github.com/user-attachments/assets/7fb0eb2e-c518-4bda-bcdf-969b1fc83e13" />
 
-### Color Image Histogram Equalization
+## Equalised Histogram
 
-- Original color image is displayed  
-- Histogram of B, G, R channels is plotted  
-- Enhanced image after HSV-based equalization is displayed  
-- Histogram of enhanced image shows better intensity distribution  
+<img width="928" height="498" alt="image" src="https://github.com/user-attachments/assets/9b0978b4-bd8f-4a23-a186-17dd48b31546" />
 
----
+<img width="777" height="452" alt="image" src="https://github.com/user-attachments/assets/cd668a21-f887-4539-a59c-b98942c64891" />
+
+## Histogram of Grayscale Image and any channel of Color Image
+
+<img width="725" height="249" alt="image" src="https://github.com/user-attachments/assets/f17ac5e4-c9e1-4b8c-be34-d544d7ed83a1" />
+
+## Histogram Equalization of Grayscale Image.
+
+<img width="1097" height="813" alt="image" src="https://github.com/user-attachments/assets/e1072e2d-da45-4dc7-9d44-ff510b709087" />
 
 ## Result
 
