@@ -70,10 +70,10 @@ Display original color image, histogram, enhanced image, and enhanced histogram 
 ## Program
 
 ### Developed By:
-**Name:** ____________________________  
+**Name:** Kanamarlapudi Sai Charithanjali
 
 ### Register No:
-____________________________  
+21222420069 
 
 ---
 
